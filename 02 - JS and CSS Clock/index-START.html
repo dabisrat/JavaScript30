@@ -61,13 +61,36 @@
       background:black;
       position: absolute;
       top:50%;
+      transform:rotate(90deg);
+      transform-origin:right;
+      transition:all .05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1)
     }
+
 
   </style>
 
   <script>
+  const secondHand = document.querySelector('.second-hand')
+  const minHand = document.querySelector('.min-hand')
+  const hourHand = document.querySelector('.hour-hand')
+  setInterval( function() {
+  const time = new Date();
+  let s,m,h;
+  s = time.getSeconds()
+  console.log( s)
+  if ( s === 0) {
+    secondHand.style.transition = 'none'
+  }
+  secondHand.style.transform = `rotate(${s * 6 + 90}deg)`
+  
+  m = time.getMinutes()
+  minHand.style.transform = `rotate(${m * 6 + 90}deg)`
+  
+  h = time.getHours()
+  hourHand.style.transform = `rotate(${h * 30 + 90}deg)`
 
-
+  },1000)
   </script>
 </body>
 </html>
